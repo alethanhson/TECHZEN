@@ -6,15 +6,16 @@
   </BFormGroup>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .t-form-group :deep(.col-form-label) {
   font-weight: 600;
-  color: #334155;
+  color: #4a5568;
   padding-bottom: 0.5rem;
+  font-size: 0.875rem;
 }
 .t-form-group :deep(.form-text) {
-  font-size: 13px;
-  color: #64748b;
+  font-size: 0.8125rem;
+  color: #718096;
   margin-top: 0.5rem;
 }
 </style>

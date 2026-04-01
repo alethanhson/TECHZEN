@@ -1,16 +1,16 @@
 <template>
   <BAlert
     v-bind="$attrs"
-    :variant="variant || 'info'"
-    :show="show || false"
-    class="t-alert"
+    :variant="variant"
+    :model-value="show"
+    class="t-alert shadow-sm"
     fade
   >
     <div class="d-flex align-items-center">
-      <div v-if="$slots.icon" class="me-3">
+      <div v-if="$slots.icon" class="me-3 t-alert__icon">
         <slot name="icon" />
       </div>
-      <div>
+      <div class="t-alert__content">
         <slot />
       </div>
     </div>
@@ -18,44 +18,54 @@
 </template>
 
 <script setup lang="ts">
-import type { BaseAlertProps } from 'bootstrap-vue-next'
+import type { ColorVariant } from 'bootstrap-vue-next'
 
-interface Props extends /* @vue-ignore */ BaseAlertProps {
-  variant?: string
+interface Props {
+  variant?: ColorVariant | null
   show?: boolean | number
 }
 
-defineProps<Props>()
+withDefaults(defineProps<Props>(), {
+  variant: 'info',
+  show: true
+})
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .t-alert {
   border: none;
   border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-}
+  padding: 1rem 1.25rem;
+  font-weight: 500;
+  font-size: 0.9375rem;
 
-.t-alert-success {
-  background-color: #f0fdf4;
-  color: #166534;
-  border-left: 5px solid #16a34a;
-}
+  &.alert-success {
+    background-color: #f0fdf9;
+    color: #008973;
+    border-left: 5px solid #00C9A7;
+  }
 
-.t-alert-danger {
-  background-color: #fef2f2;
-  color: #991b1b;
-  border-left: 5px solid #dc2626;
-}
+  &.alert-danger {
+    background-color: #fef2f2;
+    color: #b91c1c;
+    border-left: 5px solid #ef4444;
+  }
 
-.t-alert-warning {
-  background-color: #fffbeb;
-  color: #92400e;
-  border-left: 5px solid #d97706;
-}
+  &.alert-warning {
+    background-color: #fffbeb;
+    color: #92400e;
+    border-left: 5px solid #f59e0b;
+  }
 
-.t-alert-info {
-  background-color: #eff6ff;
-  color: #1e40af;
-  border-left: 5px solid #2563eb;
+  &.alert-info {
+    background-color: #f0f4ff;
+    color: #2E5BFF;
+    border-left: 5px solid #2E5BFF;
+  }
+
+  &__icon {
+    font-size: 1.25rem;
+    opacity: 0.9;
+  }
 }
 </style>

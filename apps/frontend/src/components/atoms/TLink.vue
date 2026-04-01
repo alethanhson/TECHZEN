@@ -4,34 +4,41 @@
   </BLink>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .t-link {
-  color: #3b82f6;
+  color: #2E5BFF;
   text-decoration: none;
   font-weight: 600;
   position: relative;
-  transition: color 0.2s;
-}
+  transition: all 0.2s ease;
+  padding: 2px 0;
 
-.t-link:hover {
-  color: #1d4ed8;
-}
+  &:hover {
+    color: #1e40af;
+    opacity: 0.85;
+  }
 
-.t-link:after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background-color: currentColor;
-  transform: scaleX(0);
-  transition: transform 0.2s ease-in-out;
-  transform-origin: right;
-}
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 2px;
+  }
 
-.t-link:hover:after {
-  transform: scaleX(1);
-  transform-origin: left;
+  &:hover::after {
+    width: 100%;
+  }
+
+  &.text-dark {
+    color: #2d3748 !important;
+    &:hover {
+      color: #2E5BFF !important;
+    }
+  }
 }
 </style>

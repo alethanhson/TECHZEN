@@ -1,25 +1,49 @@
+import { useToast } from '../store/toast'
+import type { ApiResponse } from '../types/api'
+
 const BASE_URL = import.meta.env.VITE_API_URL || '/api'
 
-interface ApiResponse<T> {
-  success: boolean
-  data: T
-  message: string
-  error: any
-}
-
 async function request<T>(url: string, options: RequestInit = {}): Promise<T> {
-  const res = await fetch(`${BASE_URL}${url}`, {
-    headers: { 'Content-Type': 'application/json', ...options.headers },
-    ...options,
-  })
+  const toast = useToast()
+  const token = localStorage.getItem('access_token')
 
-  const json: ApiResponse<T> = await res.json()
-
-  if (!res.ok || !json.success) {
-    throw new Error(json.message || `HTTP ${res.status}`)
+  const headers = new Headers(options.headers)
+  if (!headers.has('Content-Type') && !(options.body instanceof URLSearchParams)) {
+    headers.set('Content-Type', 'application/json')
   }
 
-  return json.data
+  if (token) {
+    headers.set('Authorization', `Bearer ${token}`)
+  }
+
+  try {
+    const res = await fetch(`${BASE_URL}${url}`, {
+      ...options,
+      headers,
+    })
+
+    const json: ApiResponse<T> = await res.json()
+
+    if (!res.ok || !json.success) {
+      const errorMsg = json.message || `Error ${res.status}`
+      console.warn(`[API Client] Request failed: ${url}`, { status: res.status, errorMsg, json })
+      toast.error(errorMsg)
+      throw new Error(errorMsg)
+    }
+
+    if (['POST', 'PUT', 'DELETE'].includes(options.method || 'GET')) {
+      let message = json.message || 'Thao tác thành công'
+      if (message === 'Successfully') message = 'Thành công!'
+      toast.success(message)
+    }
+
+    return json.data
+  } catch (err: any) {
+    if (!(err instanceof Error)) {
+      useToast().error('An unexpected error occurred')
+    }
+    throw err
+  }
 }
 
 /** Factory tạo CRUD service cho bất kỳ entity nào */

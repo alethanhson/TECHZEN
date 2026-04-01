@@ -6,8 +6,18 @@
   </BAccordionItem>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .t-accordion-item :deep(.accordion-header) {
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.t-accordion-item :deep(.accordion-button) {
+  font-size: 0.9375rem;
+  color: #4a5568;
+  
+  &:not(.collapsed) {
+    color: #2E5BFF;
+  }
 }
 </style>

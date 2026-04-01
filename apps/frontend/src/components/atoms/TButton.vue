@@ -4,35 +4,51 @@
     :variant="variant || 'primary'"
     :size="size || 'md'"
     class="t-button"
+    :class="{ 't-button--gradient': gradient }"
   >
     <slot />
   </BButton>
 </template>
 
 <script setup lang="ts">
-import type { BaseButtonProps } from 'bootstrap-vue-next'
+import type { ButtonVariant } from 'bootstrap-vue-next'
 
-interface Props extends /* @vue-ignore */ BaseButtonProps {
-  variant?: string
+interface Props {
+  variant?: ButtonVariant | null
   size?: 'sm' | 'md' | 'lg'
+  gradient?: boolean
 }
 
-defineProps<Props>()
+withDefaults(defineProps<Props>(), {
+  variant: 'primary',
+  size: 'md',
+  gradient: false
+})
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .t-button {
-  border-radius: 6px;
+  // border-radius and shadows are handled by Bootstrap Overrides in main.scss
   font-weight: 500;
-  transition: all 0.2s ease-in-out;
-}
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.01em;
 
-.t-button:hover {
-  filter: brightness(0.95);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
+  // Modern Soft Gradient
+  &--gradient {
+    &.btn-primary {
+      background: linear-gradient(135deg, #2E5BFF 0%, #6610f2 100%) !important;
+      border: none;
+      box-shadow: 0 4px 12px rgba(46, 91, 255, 0.2);
+    }
+  }
 
-.t-button:active {
-  transform: translateY(1px);
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
 }
 </style>

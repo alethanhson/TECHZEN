@@ -6,17 +6,21 @@
   </BProgress>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .t-progress {
-  height: 0.75rem;
+  height: 0.625rem;
   border-radius: 9999px;
-  background-color: #f1f5f9;
+  background-color: #edf2f7;
   overflow: hidden;
-  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.04);
 }
 
 .t-progress :deep(.progress-bar) {
   border-radius: 9999px;
-  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: width 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+  
+  &.bg-primary {
+    background: linear-gradient(90deg, #2E5BFF 0%, #6610f2 100%) !important;
+  }
 }
 </style>

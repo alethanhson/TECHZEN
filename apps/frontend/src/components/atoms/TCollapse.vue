@@ -6,8 +6,8 @@
   </BCollapse>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .t-collapse {
-  transition: height 0.35s ease-in-out;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 </style>

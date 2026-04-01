@@ -11,10 +11,14 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    BAlert: typeof import('bootstrap-vue-next/components/BAlert')['BAlert']
     BAvatar: typeof import('bootstrap-vue-next/components/BAvatar')['BAvatar']
     BBadge: typeof import('bootstrap-vue-next/components/BBadge')['BBadge']
     BButton: typeof import('bootstrap-vue-next/components/BButton')['BButton']
     BCard: typeof import('bootstrap-vue-next/components/BCard')['BCard']
+    BDropdown: typeof import('bootstrap-vue-next/components/BDropdown')['BDropdown']
+    BDropdownDivider: typeof import('bootstrap-vue-next/components/BDropdown')['BDropdownDivider']
+    BDropdownItem: typeof import('bootstrap-vue-next/components/BDropdown')['BDropdownItem']
     BFormCheckboxGroup: typeof import('bootstrap-vue-next/components/BFormCheckbox')['BFormCheckboxGroup']
     BFormInput: typeof import('bootstrap-vue-next/components/BFormInput')['BFormInput']
     BFormTextarea: typeof import('bootstrap-vue-next/components/BFormTextarea')['BFormTextarea']

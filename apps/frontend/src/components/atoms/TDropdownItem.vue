@@ -6,21 +6,32 @@
   </BDropdownItem>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .t-dropdown-item :deep(.dropdown-item) {
   border-radius: 8px;
-  padding: 0.5rem 1rem;
+  padding: 0.625rem 1rem;
   font-weight: 500;
-  color: #334155;
-  transition: all 0.2s;
-}
+  color: #4a5568;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.875rem;
 
-.t-dropdown-item :deep(.dropdown-item:hover) {
-  background-color: #f1f5f9;
-  color: #1e293b;
-}
+  &:hover {
+    background-color: rgba(46, 91, 255, 0.05);
+    color: #2E5BFF;
+    transform: translateX(4px);
+  }
 
-.t-dropdown-item :deep(.dropdown-item:active) {
-  background-color: #e2e8f0;
+  &:active {
+    background-color: rgba(46, 91, 255, 0.1);
+    color: #2E5BFF;
+  }
+  
+  &.text-danger {
+    color: #e53e3e !important;
+    &:hover {
+      background-color: rgba(229, 62, 62, 0.05);
+      color: #c53030 !important;
+    }
+  }
 }
 </style>

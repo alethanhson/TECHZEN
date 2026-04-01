@@ -6,8 +6,8 @@
   </BTab>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .t-tab {
-  transition: opacity 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 </style>

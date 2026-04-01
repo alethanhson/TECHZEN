@@ -14,43 +14,54 @@
 </template>
 
 <script setup lang="ts">
-import type { BaseFormInputProps } from 'bootstrap-vue-next'
-
-interface Props extends /* @vue-ignore */ BaseFormInputProps {
+interface Props {
   id?: string
   label?: string
   feedback?: string
   state?: boolean | null
 }
 
-withDefaults(defineProps<Props>(), {
-  id: () => `t-input-${Math.random().toString(36).substr(2, 9)}`,
+const props = withDefaults(defineProps<Props>(), {
+  id: () => `t-input-${Math.random().toString(36).substring(2, 9)}`,
   state: null
 })
-
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .t-label {
   font-weight: 600;
-  color: #374151;
-  font-size: 14px;
-  margin-bottom: 4px;
+  color: #4a5568;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  display: block;
 }
 
 .t-input {
-  border-radius: 6px;
-  background-color: #f9fafb;
-}
+  border-radius: 10px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 0.625rem 1rem;
+  transition: all 0.2s ease;
 
-.t-input:focus {
-  background-color: #ffffff;
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  &:focus {
+    background-color: #ffffff;
+    border-color: #2E5BFF;
+    box-shadow: 0 0 0 4px rgba(46, 91, 255, 0.1);
+    outline: none;
+  }
+
+  &.is-invalid {
+    border-color: #ef4444;
+    &:focus {
+      box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+    }
+  }
 }
 
 .t-feedback {
   display: block;
-  font-size: 12px;
-  margin-top: 4px;
+  font-size: 0.75rem;
+  margin-top: 0.375rem;
+  font-weight: 500;
 }
 </style>

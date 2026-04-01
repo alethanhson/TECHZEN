@@ -6,32 +6,39 @@
   </BCard>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .t-card {
-  --bs-card-border-radius: 16px;
-  --bs-card-border-color: #f1f5f9;
+  --bs-card-border-radius: 12px;
+  --bs-card-border-color: rgba(0, 0, 0, 0.03);
   --bs-card-cap-bg: #f8fafc;
   --bs-card-cap-color: #1e293b;
-  --bs-card-box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --bs-card-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   
   border-radius: var(--bs-card-border-radius);
   border: 1px solid var(--bs-card-border-color);
   box-shadow: var(--bs-card-box-shadow);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
+  background: white;
 }
 
 .t-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1) !important;
 }
 
 .t-card :deep(.card-header) {
   font-weight: 700;
   letter-spacing: -0.025em;
+  padding: 1rem 1.5rem;
+}
+
+.t-card :deep(.card-body) {
+  padding: 1.5rem;
 }
 
 .t-card :deep(.card-footer) {
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
+  padding: 1rem 1.5rem;
 }
 </style>

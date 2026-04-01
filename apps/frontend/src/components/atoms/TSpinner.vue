@@ -1,36 +1,47 @@
 <template>
-  <div class="t-spinner-wrapper" :class="{ 'flex-column text-center': label }">
+  <div class="t-spinner-wrapper d-inline-flex align-items-center" :class="{ 'flex-column text-center': label }">
     <BSpinner
       v-bind="$attrs"
-      :variant="variant || 'primary'"
-      :type="type || 'border'"
-      :small="small || false"
+      :variant="variant"
+      :type="type"
+      :small="small"
       class="t-spinner"
     />
-    <span v-if="label" class="t-spinner-label mt-2 d-block text-muted small">{{ label }}</span>
+    <span v-if="label" :class="labelClass">{{ label }}</span>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { BaseSpinnerProps } from 'bootstrap-vue-next'
+import type { ColorVariant } from 'bootstrap-vue-next'
 
-interface Props extends /* @vue-ignore */ BaseSpinnerProps {
-  variant?: string
+interface Props {
+  variant?: ColorVariant | null
   type?: 'border' | 'grow'
   small?: boolean
   label?: string
+  labelClass?: string
 }
 
-defineProps<Props>()
+withDefaults(defineProps<Props>(), {
+  variant: 'primary',
+  type: 'border',
+  small: false,
+  labelClass: 't-spinner-label mt-2 d-block text-muted small'
+})
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .t-spinner {
-  width: var(--t-spinner-size, 1.5rem);
-  height: var(--t-spinner-size, 1.5rem);
+  border-width: 0.2em;
+  
+  &.spinner-border-sm {
+    border-width: 0.15em;
+  }
 }
 
 .t-spinner-label {
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  color: #718096;
 }
 </style>

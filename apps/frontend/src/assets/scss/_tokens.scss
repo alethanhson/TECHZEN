@@ -1,0 +1,28 @@
+$electric-blue: #2E5BFF;
+$indigo: #6610f2;
+$mint: #00C9A7;
+$soft-gray: #F8F9FA;
+$glass-white: rgba(255, 255, 255, 0.7);
+
+$brand-primary: $electric-blue;
+$brand-accent: $indigo;
+$brand-success: $mint;
+
+$border-radius-soft-sm: 8px;
+$border-radius-soft-md: 10px;
+$border-radius-soft-lg: 12px;
+
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// 4. Shadows (Premium Soft Shadows)
+$shadow-soft-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+$shadow-soft-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+$shadow-soft-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+
+// 5. Gradients
+$gradient-primary: linear-gradient(135deg, $electric-blue 0%, #1e40af 100%);
+$gradient-soft: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);

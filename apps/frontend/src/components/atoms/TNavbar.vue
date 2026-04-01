@@ -1,40 +1,45 @@
 <template>
-  <BNavbar v-bind="$attrs" class="t-navbar">
+  <BNavbar v-bind="$attrs" class="t-navbar shadow-sm">
     <template v-for="(_, name) in $slots" #[name]="slotData">
       <slot :name="name" v-bind="slotData || {}" />
     </template>
   </BNavbar>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .t-navbar {
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
   background-color: rgba(255, 255, 255, 0.8) !important;
-  backdrop-filter: blur(12px);
-  padding: 0.75rem 1.5rem;
+  backdrop-filter: blur(16px);
+  padding: 0.875rem 1.75rem;
+  transition: all 0.3s ease;
 }
 
 .t-navbar :deep(.navbar-brand) {
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  color: #1e293b;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #1a202c;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .t-navbar :deep(.nav-link) {
   font-weight: 600;
-  color: #64748b;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: all 0.2s;
+  color: #4a5568;
+  padding: 0.5rem 1.25rem;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  font-size: 0.9375rem;
 }
 
 .t-navbar :deep(.nav-link:hover) {
-  background-color: #f1f5f9;
-  color: #1e293b;
+  background-color: rgba(46, 91, 255, 0.04);
+  color: #2E5BFF;
 }
 
 .t-navbar :deep(.nav-link.active) {
-  color: #3b82f6;
-  background-color: rgba(59, 130, 246, 0.05);
+  color: #2E5BFF;
+  background-color: rgba(46, 91, 255, 0.08);
 }
 </style>

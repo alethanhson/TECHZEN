@@ -23,6 +23,12 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: Number(process.env.VITE_PORT) || 8080,
-    allowedHosts: ['frontend', 'localhost']
+    allowedHosts: ['frontend', 'localhost', 'nginx'],
+    watch: {
+      usePolling: true,
+    },
+    hmr: {
+      clientPort: 80,
+    }
   }
 })

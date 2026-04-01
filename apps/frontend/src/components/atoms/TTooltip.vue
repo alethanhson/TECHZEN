@@ -6,17 +6,19 @@
   </BTooltip>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .t-tooltip :deep(.tooltip-inner) {
-  background-color: #1e293b;
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
-  font-weight: 500;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  background-color: #1a202c;
+  border-radius: 10px;
+  padding: 0.625rem 1rem;
+  font-weight: 600;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
 }
 
 .t-tooltip :deep(.tooltip-arrow::before) {
-  border-top-color: #1e293b;
+  border-top-color: #1a202c;
 }
 
 .t-tooltip :deep(.tooltip.show) {

@@ -6,39 +6,47 @@
   </BTabs>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .t-tabs :deep(.nav-tabs) {
-  border-bottom: 2px solid #f1f5f9;
-  gap: 1rem;
+  border-bottom: 2px solid #edf2f7;
+  gap: 0.5rem;
+  padding: 0 1rem;
 }
 
 .t-tabs :deep(.nav-link) {
   border: none;
   font-weight: 600;
-  color: #64748b;
+  color: #718096;
   padding: 1rem 1.5rem;
-  border-radius: 8px 8px 0 0;
+  border-radius: 10px 10px 0 0;
   position: relative;
-  transition: all 0.2s;
-}
+  transition: all 0.3s ease;
+  font-size: 0.9375rem;
 
-.t-tabs :deep(.nav-link.active) {
-  background-color: transparent;
-  color: #3b82f6;
-}
+  &:hover {
+    color: #2E5BFF;
+    background-color: rgba(46, 91, 255, 0.04);
+  }
 
-.t-tabs :deep(.nav-link.active::after) {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: #3b82f6;
+  &.active {
+    background-color: transparent;
+    color: #2E5BFF;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background-color: #2E5BFF;
+      border-radius: 3px 3px 0 0;
+    }
+  }
 }
 
 .t-tabs :deep(.tab-content) {
-  padding: 2rem 0;
-  color: #475569;
+  padding: 2rem 1rem;
+  color: #4a5568;
 }
 </style>

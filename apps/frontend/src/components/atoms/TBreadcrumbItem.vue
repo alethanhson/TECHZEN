@@ -6,9 +6,21 @@
   </BBreadcrumbItem>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .t-breadcrumb-item :deep(.active) {
-  color: #64748b;
-  font-weight: 500;
+  color: #4a5568 !important;
+  font-weight: 600;
+}
+
+.t-breadcrumb-item :deep(a) {
+  color: #2E5BFF;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: #1e40af;
+    opacity: 0.8;
+  }
 }
 </style>
