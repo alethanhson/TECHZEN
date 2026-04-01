@@ -1,32 +1,39 @@
-import axios from 'axios'
-import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+const BASE_URL = import.meta.env.VITE_API_URL || '/api'
 
-// Cấu hình URL API mặc định cho test (thường là localhost:8080)
-const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api'
+interface ApiResponse<T> {
+  success: boolean
+  data: T
+  message: string
+  error: any
+}
 
-const api: AxiosInstance = axios.create({
-  baseURL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  timeout: 5000,
-})
+async function request<T>(url: string, options: RequestInit = {}): Promise<T> {
+  const res = await fetch(`${BASE_URL}${url}`, {
+    headers: { 'Content-Type': 'application/json', ...options.headers },
+    ...options,
+  })
 
-// Bộ đánh chặn (Interceptors) để xử lý lỗi hoặc thêm token nếu cần
-api.interceptors.response.use(
-  (response: AxiosResponse) => response.data,
-  (error) => {
-    console.error('API Error:', error.response?.data || error.message)
-    return Promise.reject(error)
+  const json: ApiResponse<T> = await res.json()
+
+  if (!res.ok || !json.success) {
+    throw new Error(json.message || `HTTP ${res.status}`)
   }
-)
 
-export const createCrudService = (resource: string) => ({
-  getAll: (params?: any) => api.get(`/${resource}`, { params }),
-  getById: (id: string | number) => api.get(`/${resource}/${id}`),
-  create: (data: any) => api.post(`/${resource}`, data),
-  update: (id: string | number, data: any) => api.put(`/${resource}/${id}`, data),
-  delete: (id: string | number) => api.delete(`/${resource}/${id}`),
-})
+  return json.data
+}
 
-export default api
+/** Factory tạo CRUD service cho bất kỳ entity nào */
+export function createCrudService<T>(resource: string) {
+  return {
+    getAll: (params?: Record<string, any>) => {
+      const query = params ? '?' + new URLSearchParams(params).toString() : ''
+      return request<T[]>(`/${resource}${query}`)
+    },
+    getById: (id: number) => request<T>(`/${resource}/${id}`),
+    create: (data: any) => request<T>(`/${resource}`, { method: 'POST', body: JSON.stringify(data) }),
+    update: (id: number, data: any) => request<T>(`/${resource}/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+    delete: (id: number) => request<any>(`/${resource}/${id}`, { method: 'DELETE' }),
+  }
+}
+
+export default { request, createCrudService }

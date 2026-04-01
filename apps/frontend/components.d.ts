@@ -11,6 +11,19 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    BAvatar: typeof import('bootstrap-vue-next/components/BAvatar')['BAvatar']
+    BBadge: typeof import('bootstrap-vue-next/components/BBadge')['BBadge']
+    BButton: typeof import('bootstrap-vue-next/components/BButton')['BButton']
+    BCard: typeof import('bootstrap-vue-next/components/BCard')['BCard']
+    BFormCheckboxGroup: typeof import('bootstrap-vue-next/components/BFormCheckbox')['BFormCheckboxGroup']
+    BFormInput: typeof import('bootstrap-vue-next/components/BFormInput')['BFormInput']
+    BFormTextarea: typeof import('bootstrap-vue-next/components/BFormTextarea')['BFormTextarea']
+    BLink: typeof import('bootstrap-vue-next/components/BLink')['BLink']
+    BModal: typeof import('bootstrap-vue-next/components/BModal')['BModal']
+    BNavbar: typeof import('bootstrap-vue-next/components/BNavbar')['BNavbar']
+    BSpinner: typeof import('bootstrap-vue-next/components/BSpinner')['BSpinner']
+    BTable: typeof import('bootstrap-vue-next/components/BTable')['BTable']
+    BToast: typeof import('bootstrap-vue-next/components/BToast')['BToast']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']

@@ -70,3 +70,4 @@ mysql_data/
 **/.hypothesis/
 **/.codeclimate.yml
 **/htmlcov/
+.agent/
