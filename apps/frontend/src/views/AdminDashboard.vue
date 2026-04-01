@@ -186,7 +186,6 @@ const handleSaveUser = async () => {
       role: newUserForm.role,
       isActive: true
     })
-    showToast('Thành công!', `Đã thêm tài khoản "${newUserForm.name}"`, 'success')
     loadUsers()
   } catch (err: any) {
     showToast('Lỗi', 'Thêm tài khoản thất bại', 'danger')
