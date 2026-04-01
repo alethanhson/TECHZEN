@@ -1,6 +1,11 @@
 from pydantic import BaseModel, ConfigDict
 from typing import Optional
 
+class TagResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: int
+    name: str
+
 
 class ProductCreate(BaseModel):
     code: str
@@ -9,6 +14,7 @@ class ProductCreate(BaseModel):
     price: float = 0
     quantity: int = 0
     is_active: bool = True
+    tags: Optional[list[str]] = []
 
 
 class ProductUpdate(BaseModel):
@@ -18,6 +24,7 @@ class ProductUpdate(BaseModel):
     price: Optional[float] = None
     quantity: Optional[int] = None
     is_active: Optional[bool] = None
+    tags: Optional[list[str]] = None
 
 
 class ProductResponse(BaseModel):
@@ -29,3 +36,8 @@ class ProductResponse(BaseModel):
     price: float
     quantity: int
     is_active: bool
+    tags: list[TagResponse] = []
+
+class PaginatedProductResponse(BaseModel):
+    items: list[ProductResponse]
+    total: int

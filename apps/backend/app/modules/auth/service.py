@@ -39,7 +39,9 @@ class AuthService:
         if not user or not verify_password(password, user.hashed_password):
             raise UnauthorizedException("Incorrect username or password")
 
-        return self._generate_tokens(user.id, user.username)
+        res_dict = self._generate_tokens(user.id, user.username)
+        res_dict["user"] = user
+        return res_dict
 
     def refresh(self, refresh_token_str: str) -> dict:
         payload = self._decode_refresh_token(refresh_token_str)

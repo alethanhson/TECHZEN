@@ -46,6 +46,7 @@ desktop.ini
 **/yarn-error.log*
 
 mysql_data/
+.docker/mysql_data/
 **/*.sql
 **/*.sqlite
 

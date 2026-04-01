@@ -31,18 +31,34 @@ const handleLogin = async () => {
       username: form.username,
       password: form.password,
     })
-    
+
+    if (!data || !data.access_token) {
+      console.warn('[Login Phase] API returned success but access_token is missing.', data)
+      throw new Error('Đăng nhập thất bại: Token missing')
+    }
+
     setToken(data.access_token)
-    // For the exam, we'll set a basic user object from the form
-    setUser({ 
-      id: 1, 
-      username: form.username, 
-      email: `${form.username}@techzen.com`,
-      role: 'user'
-    } as any) 
     
+    // Gắn đúng user trả về từ backend, lấy role.name ra cho phẳng hoặc để yên
+    if (data.user) {
+      setUser({
+        ...data.user,
+        role: data.user.role?.name || 'User'
+      } as unknown)
+    } else {
+      // Fallback
+      setUser({
+        id: 1,
+        username: form.username,
+        email: `${form.username}@techzen.com`,
+        role: 'user',
+        is_superuser: false,
+      } as unknown)
+    }
+
     router.push('/')
-  } catch (error) {
+  } catch (err) {
+    console.log(err);
     // Error is already handled by api.ts toast
   } finally {
     isLoading.value = false

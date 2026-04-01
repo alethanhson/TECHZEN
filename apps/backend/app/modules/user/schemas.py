@@ -10,10 +10,13 @@ class RoleResponse(BaseModel):
 
 
 class UserCreate(BaseModel):
-    username: str
+    username: Optional[str] = None
+    name: Optional[str] = None
     email: EmailStr
-    password: str
-    role_id: int = 2
+    password: Optional[str] = None
+    role_id: Optional[int] = None
+    role: Optional[str] = None
+    isActive: Optional[bool] = None
 
 
 class UserUpdate(BaseModel):
@@ -29,4 +32,5 @@ class UserResponse(BaseModel):
     username: str
     email: EmailStr
     is_active: bool
+    is_superuser: bool
     role: RoleResponse

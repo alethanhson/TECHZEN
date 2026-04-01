@@ -6,6 +6,7 @@ export interface TokenResponse {
   access_token: string;
   refresh_token: string;
   token_type: string;
+  user?: UserResponse;
 }
 
 export interface UserResponse {
@@ -13,6 +14,7 @@ export interface UserResponse {
   username: string;
   email: string;
   is_active: boolean;
+  is_superuser?: boolean;
   role: RoleResponse;
 }
 
@@ -20,6 +22,11 @@ export interface RoleResponse {
   id: number;
   name: string;
   description: string | null;
+}
+
+export interface TagResponse {
+  id: number;
+  name: string;
 }
 
 export interface ProductResponse {
@@ -30,6 +37,7 @@ export interface ProductResponse {
   price: number;
   quantity: number;
   is_active: boolean;
+  tags: TagResponse[];
 }
 
 export interface ProductCreate {
@@ -39,6 +47,7 @@ export interface ProductCreate {
   price?: number;
   quantity?: number;
   is_active?: boolean;
+  tags?: string[];
 }
 
 export interface ProductUpdate {
@@ -48,6 +57,7 @@ export interface ProductUpdate {
   price?: number | null;
   quantity?: number | null;
   is_active?: boolean | null;
+  tags?: string[];
 }
 
 export interface RegisterRequest {
@@ -83,5 +93,5 @@ export interface ApiResponse<T> {
   success: boolean;
   data: T;
   message: string;
-  error: any;
+  error: unknown;
 }

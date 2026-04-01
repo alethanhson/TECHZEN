@@ -3,28 +3,40 @@
     <!-- Header -->
     <TNavbar sticky="top" class="t-main-navbar">
       <div class="container d-flex justify-content-between align-items-center">
-        <TNavbarBrand class="d-flex align-items-center gap-2">
+        <BNavbarBrand to="/" class="d-flex align-items-center gap-2">
           <div class="icon-box bg-modern-gradient rounded-xl shadow-sm">
-             <i class="bi bi-rocket-takeoff-fill"></i>
+            <i class="bi bi-rocket-takeoff-fill"></i>
           </div>
           <span class="brand-text">TECHZEN<span class="text-primary">.EXAM</span></span>
-        </TNavbarBrand>
-        
+        </BNavbarBrand>
+
         <div class="d-flex gap-3 align-items-center">
           <TLink to="/" class="text-dark nav-item-link d-none d-md-block">Trang chủ</TLink>
           <TLink to="/products" class="text-dark nav-item-link d-none d-sm-block">Sản phẩm</TLink>
-          
+          <TLink v-if="authState.isAuthenticated" to="/dashboard" class="text-dark nav-item-link d-none d-sm-block">Dashboard</TLink>
+
           <div class="ms-2 d-flex gap-2">
             <template v-if="!authState.isAuthenticated">
-              <TButton to="/login" variant="light" size="sm" class="px-3 fw-bold">Đăng nhập</TButton>
-              <TButton to="/register" variant="primary" size="sm" class="px-3 fw-bold shadow-sm" gradient>Đăng ký</TButton>
+              <TButton to="/login" variant="light" size="sm" class="px-3 fw-bold"
+                >Đăng nhập</TButton
+              >
+              <TButton
+                to="/register"
+                variant="primary"
+                size="sm"
+                class="px-3 fw-bold shadow-sm"
+                gradient
+                >Đăng ký</TButton
+              >
             </template>
-            
+
             <template v-else>
               <TDropdown no-caret variant="link" class="p-0 user-dropdown">
                 <template #button-content>
                   <div class="user-profile-circle shadow-sm border">
-                    <span class="user-initials">{{ authState.user?.username?.charAt(0).toUpperCase() || 'U' }}</span>
+                    <span class="user-initials">{{
+                      authState.user?.username?.charAt(0).toUpperCase() || 'U'
+                    }}</span>
                   </div>
                 </template>
                 <TDropdownItem class="py-2 px-3">
@@ -44,7 +56,7 @@
 
     <!-- Main Content -->
     <main class="flex-grow-1">
-       <slot />
+      <slot />
     </main>
 
     <!-- Footer -->
@@ -55,13 +67,12 @@
             <h5 class="fw-bold mb-2">TECHZEN</h5>
             <p class="text-muted small mb-0">© 2026 Techzen Education - Exam Preparation System</p>
           </div>
-          <div class="col-md-6 text-center text-md-end">
+          <!-- <div class="col-md-6 text-center text-md-end">
             <div class="d-flex justify-content-center justify-content-md-end gap-3 mb-3">
               <TLink href="#" class="text-muted small">Quy định</TLink>
               <TLink href="#" class="text-muted small">Hỗ trợ</TLink>
             </div>
-            <TBadge variant="primary" pill class="p-2 px-3">Student ID: 123456</TBadge>
-          </div>
+          </div> -->
         </div>
       </div>
     </footer>
@@ -114,9 +125,9 @@ const handleLogout = () => {
   font-size: 0.9375rem;
   font-weight: 600;
   color: #4a5568 !important;
-  
+
   &:hover {
-    color: #2E5BFF !important;
+    color: #2e5bff !important;
   }
 }
 
@@ -142,14 +153,14 @@ const handleLogout = () => {
 
   &:hover {
     transform: scale(1.05);
-    border-color: #2E5BFF !important;
+    border-color: #2e5bff !important;
   }
 }
 
 .user-initials {
   font-weight: 700;
   font-size: 0.9rem;
-  color: #2E5BFF;
+  color: #2e5bff;
 }
 
 .extra-small {

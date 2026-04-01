@@ -21,7 +21,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.add_middleware(RateLimitMiddleware, limit=20, window=60)
+app.add_middleware(RateLimitMiddleware, limit=settings.RATE_LIMIT_PER_MINUTE, window=60)
 Base.metadata.create_all(bind=engine)
 
 app.include_router(api_router, prefix=settings.API_STR)

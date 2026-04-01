@@ -37,9 +37,10 @@ const handleRegister = async () => {
       email: form.email,
       password: form.password,
     })
-    
+
     router.push('/login')
-  } catch (error) {
+  } catch (err: unknown) {
+    console.log(err);
     // Error already handled by api.ts
   } finally {
     isLoading.value = false

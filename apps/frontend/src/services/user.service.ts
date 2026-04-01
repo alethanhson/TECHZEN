@@ -1,5 +1,5 @@
 import api from './api'
-import type { UserResponse, UserUpdate } from '../types/api'
+import type { UserResponse } from '../types/api'
 
 const resource = 'users'
 const crud = api.createCrudService<UserResponse>(resource)

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useToast } from '../store/toast'
 import type { ApiResponse } from '../types/api'
 
@@ -28,6 +29,11 @@ async function request<T>(url: string, options: RequestInit = {}): Promise<T> {
       const errorMsg = json.message || `Error ${res.status}`
       console.warn(`[API Client] Request failed: ${url}`, { status: res.status, errorMsg, json })
       toast.error(errorMsg)
+      if (res.status === 401) {
+        localStorage.removeItem('access_token')
+        localStorage.removeItem('user')
+      }
+
       throw new Error(errorMsg)
     }
 
@@ -46,7 +52,6 @@ async function request<T>(url: string, options: RequestInit = {}): Promise<T> {
   }
 }
 
-/** Factory tạo CRUD service cho bất kỳ entity nào */
 export function createCrudService<T>(resource: string) {
   return {
     getAll: (params?: Record<string, any>) => {

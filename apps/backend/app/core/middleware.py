@@ -6,7 +6,7 @@ from collections import defaultdict
 
 
 class RateLimitMiddleware(BaseHTTPMiddleware):
-    def __init__(self, app, limit: int = 10, window: int = 60):
+    def __init__(self, app, limit: int = 100, window: int = 60):
         super().__init__(app)
         self.limit = limit
         self.window = window

@@ -20,11 +20,9 @@ export const useToast = () => {
     const toast: ToastMessage = { id, title, body, variant, visible: true }
     state.toasts.push(toast)
     console.log(`[Toast Store] New toast added: [${variant.toUpperCase()}] ${title}: ${body}`)
-    
-    // Auto remove after 5 seconds
+
     setTimeout(() => {
       state.toasts = state.toasts.filter(t => t.id !== id)
-      console.log(`[Toast Store] Toast removed: ${id}`)
     }, 5000)
   }
 
