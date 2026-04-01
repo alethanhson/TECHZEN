@@ -23,7 +23,11 @@ services:
       - ./apps/backend:/app
     environment:
       - ENV=${ENV:-development}
-      - DATABASE_URL=mysql+pymysql://${MYSQL_USER:-techzen}:${MYSQL_PASSWORD:-password123}@db:3306/${MYSQL_DATABASE:-techzen}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-techzen}
+      - MYSQL_USER=${MYSQL_USER:-techzen}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-password123}
+      - MYSQL_HOST=db
+      - MYSQL_PORT=3306
     depends_on:
       - db
     networks:
